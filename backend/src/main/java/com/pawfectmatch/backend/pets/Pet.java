@@ -1,7 +1,13 @@
 package com.pawfectmatch.backend.pets;
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "pets")
@@ -31,7 +37,8 @@ public class Pet {
     @Column(nullable = false)
     private String status;
 
-    @Column(name = "created_at")
+    @Column(name = "created_at", updatable = false)
+    @org.hibernate.annotations.CreationTimestamp
     private LocalDateTime createdAt;
 
     public Integer getId() { return id; }
