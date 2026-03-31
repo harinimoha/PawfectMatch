@@ -1,0 +1,36 @@
+version: "3.8"
+ 
+services:
+ 
+  # ── Your Spring Boot Backend ─────────────────────────────────────────────
+  backend:
+    build:
+      context: ./backend   # folder where your Dockerfile lives
+    container_name: pawfectmatch-backend
+    ports:
+      - "8080:8080"        # your laptop:8080 → container:8080
+    networks:
+      - pawfect-network
+ 
+  # ── Appsmith (the visual UI builder) ─────────────────────────────────────
+  appsmith:
+    image: index.docker.io/appsmith/appsmith-ee
+    container_name: appsmith
+    ports:
+      - "80:80"            # open http://localhost to see Appsmith
+      - "443:443"
+    volumes:
+      - appsmith-data:/appsmith-stacks
+    networks:
+      - pawfect-network
+    depends_on:
+      - backend            # Appsmith starts after your backend is up
+ 
+# ── Shared network so Appsmith can talk to your backend ───────────────────
+networks:
+  pawfect-network:
+    driver: bridge
+ 
+# ── Persistent storage for Appsmith settings ──────────────────────────────
+volumes:
+  appsmith-data:
