@@ -1,7 +1,7 @@
 package com.pawfectmatch.backend.pets;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
+//import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "pets")
@@ -31,8 +31,8 @@ public class Pet {
     @Column(nullable = false)
     private String status;
 
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    //@Column(name = "created_at")
+    //private LocalDateTime createdAt;
 
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
@@ -64,6 +64,6 @@ public class Pet {
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
 
-    public LocalDateTime getCreatedAt() { return createdAt; }
-    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+    //public LocalDateTime getCreatedAt() { return createdAt; }
+    //public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 }
