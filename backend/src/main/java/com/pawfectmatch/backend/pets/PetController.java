@@ -1,4 +1,6 @@
 package com.pawfectmatch.backend.pets;
+import com.pawfectmatch.backend.messages.MessageRepository;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +11,11 @@ import org.springframework.web.bind.annotation.*;
 public class PetController {
 
     private final PetRepository repo;
-
-    public PetController(PetRepository repo) {
+    private final MessageRepository messageRepo;
+    
+    public PetController(PetRepository repo, MessageRepository messageRepo) {
         this.repo = repo;
+        this.messageRepo = messageRepo;
     }
 
     // GET /pets → returns all pets
@@ -77,6 +81,7 @@ public class PetController {
     // DELETE /pets/1 → delete a pet listing
     @DeleteMapping("/{id}")
     public void deletePet(@PathVariable Integer id) {
+        messageRepo.deleteByPetId(id);
         repo.deleteById(id);
     }
 }
