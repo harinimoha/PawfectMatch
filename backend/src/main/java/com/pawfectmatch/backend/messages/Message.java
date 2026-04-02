@@ -17,7 +17,7 @@ public class Message {
     @Column(name = "receiver_id", nullable = false)
     private Integer receiverId;
 
-    @Column(name = "pet_id", nullable = false)
+    @Column(name = "pet_id")
     private Integer petId;
 
     @Column(nullable = false)

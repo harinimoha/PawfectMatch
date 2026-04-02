@@ -10,7 +10,7 @@ CREATE TABLE users (
     email       VARCHAR(100)    NOT NULL UNIQUE,
     password    VARCHAR(255)    NOT NULL,
     role        VARCHAR(20)     NOT NULL,
-    created_at  TIMESTAMP       DEFAULT CURRENT_TIMESTAMP,  --"user joined for ... years" add credentials
+    created_at  TIMESTAMP       DEFAULT CURRENT_TIMESTAMP  --"user joined for ... years" add credentials
 
     CHECK (role IN ('ADOPTER', 'PROVIDER'))
 );
@@ -67,7 +67,7 @@ CREATE TABLE messages (
     id          INT             PRIMARY KEY AUTO_INCREMENT,
     sender_id   INT             NOT NULL,
     receiver_id INT             NOT NULL,
-    pet_id      INT             NOT NULL,
+    pet_id      INT,             
     content     VARCHAR(1000)   NOT NULL,
     is_read     BOOLEAN         DEFAULT FALSE,
     sent_at     TIMESTAMP       DEFAULT CURRENT_TIMESTAMP,
