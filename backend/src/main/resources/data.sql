@@ -45,22 +45,22 @@ INSERT INTO adopters (user_id, first_name, last_name, phone, living_environment,
     (16, 'Liam',   'Nguyen',  '555-1012', 'APARTMENT', 2, FALSE, FALSE, 'Cat');
 
 -- pets: spread across all 4 providers
-INSERT INTO pets (provider_id, name, species, breed, age, temperament, description, status) VALUES
-    (1, 'Milo',    'Dog', 'Golden Retriever',   3, 'Friendly, Energetic',   'Loves to play fetch and go on long walks.',     'AVAILABLE'),
-    (1, 'Luna',    'Cat', 'Domestic Shorthair', 2, 'Calm, Affectionate',    'Enjoys lounging in sunny spots.',               'AVAILABLE'),
-    (1, 'Rocky',   'Dog', 'Labrador',           5, 'Loyal, Gentle',         'Great family dog, loves swimming.',             'AVAILABLE'),
-    (1, 'Bella',   'Cat', 'Persian',            3, 'Quiet, Elegant',        'Prefers indoor life and gentle handling.',      'ADOPTED'),
-    (2, 'Charlie', 'Dog', 'Poodle',             4, 'Intelligent, Gentle',   'Great with kids and other dogs.',               'AVAILABLE'),
-    (2, 'Daisy',   'Cat', 'Siamese',            1, 'Curious, Vocal',        'Very social and loves attention.',              'AVAILABLE'),
-    (2, 'Max',     'Dog', 'Beagle',             2, 'Playful, Curious',      'Loves sniffing around and exploring.',          'AVAILABLE'),
-    (2, 'Cleo',    'Cat', 'Ragdoll',            4, 'Docile, Affectionate',  'Goes limp when held, very relaxed.',            'ON_HOLD'),
-    (3, 'Buddy',   'Dog', 'Border Collie',      3, 'Active, Smart',         'Needs lots of exercise and mental stimulation.','AVAILABLE'),
-    (3, 'Mia',     'Cat', 'Maine Coon',         2, 'Gentle, Sociable',      'Gets along well with everyone.',                'AVAILABLE'),
-    (3, 'Oscar',   'Dog', 'Corgi',              4, 'Cheerful, Loyal',       'Short legs, big personality.',                  'AVAILABLE'),
-    (4, 'Ruby',    'Dog', 'Shih Tzu',           5, 'Calm, Affectionate',    'Loves cuddles and short walks.',                'AVAILABLE'),
-    (4, 'Leo',     'Cat', 'British Shorthair',  3, 'Reserved, Calm',        'Independent but affectionate on his terms.',    'AVAILABLE'),
-    (4, 'Molly',   'Dog', 'Dalmatian',          2, 'Energetic, Playful',    'Needs an active owner for daily runs.',         'AVAILABLE'),
-    (4, 'Nala',    'Cat', 'Abyssinian',         1, 'Active, Curious',       'Always on the move, loves to climb.',           'AVAILABLE');
+INSERT INTO pets (provider_id, name, species, breed, age, temperament, description, photo_url, status) VALUES
+    (1, 'Milo',    'Dog', 'Golden Retriever',   3, 'Friendly, Energetic',   'Loves to play fetch and go on long walks.',     'https://commons.wikimedia.org/wiki/Special:FilePath/Golden_retriever_retrieving_a_pheasant.jpg', 'AVAILABLE'),
+    (1, 'Luna',    'Cat', 'Domestic Shorthair', 2, 'Calm, Affectionate',    'Enjoys lounging in sunny spots.',               'https://commons.wikimedia.org/wiki/Special:FilePath/Domestic_cat_felis_catus.jpg', 'AVAILABLE'),
+    (1, 'Rocky',   'Dog', 'Labrador',           5, 'Loyal, Gentle',         'Great family dog, loves swimming.',             'https://commons.wikimedia.org/wiki/Special:FilePath/Labrador_retriever_bulaj1.jpg', 'AVAILABLE'),
+    (1, 'Bella',   'Cat', 'Persian',            3, 'Quiet, Elegant',        'Prefers indoor life and gentle handling.',      'https://commons.wikimedia.org/wiki/Special:FilePath/Persian_in_Cat_Cafe.jpg', 'ADOPTED'),
+    (2, 'Charlie', 'Dog', 'Poodle',             4, 'Intelligent, Gentle',   'Great with kids and other dogs.',               'https://commons.wikimedia.org/wiki/Special:FilePath/Pudel_kleinweiss.jpg', 'AVAILABLE'),
+    (2, 'Daisy',   'Cat', 'Siamese',            1, 'Curious, Vocal',        'Very social and loves attention.',              'https://commons.wikimedia.org/wiki/Special:FilePath/Siamese_cat.jpg', 'AVAILABLE'),
+    (2, 'Max',     'Dog', 'Beagle',             2, 'Playful, Curious',      'Loves sniffing around and exploring.',          'https://commons.wikimedia.org/wiki/Special:FilePath/Beagle_portrait_Camry.jpg', 'AVAILABLE'),
+    (2, 'Cleo',    'Cat', 'Ragdoll',            4, 'Docile, Affectionate',  'Goes limp when held, very relaxed.',            'https://commons.wikimedia.org/wiki/Special:FilePath/Pansy_cat.jpg', 'ON_HOLD'),
+    (3, 'Buddy',   'Dog', 'Border Collie',      3, 'Active, Smart',         'Needs lots of exercise and mental stimulation.','https://commons.wikimedia.org/wiki/Special:FilePath/Short_Haired_Border_Collie.jpg', 'AVAILABLE'),
+    (3, 'Mia',     'Cat', 'Maine Coon',         2, 'Gentle, Sociable',      'Gets along well with everyone.',                'https://commons.wikimedia.org/wiki/Special:FilePath/Maine_coon_profile.jpg', 'AVAILABLE'),
+    (3, 'Oscar',   'Dog', 'Corgi',              4, 'Cheerful, Loyal',       'Short legs, big personality.',                  'https://commons.wikimedia.org/wiki/Special:FilePath/Kelsey_n_Penny_%28Welsh_Corgis%29.jpg', 'AVAILABLE'),
+    (4, 'Ruby',    'Dog', 'Shih Tzu',           5, 'Calm, Affectionate',    'Loves cuddles and short walks.',                'https://commons.wikimedia.org/wiki/Special:FilePath/Shih-Tzu.jpg', 'AVAILABLE'),
+    (4, 'Leo',     'Cat', 'British Shorthair',  3, 'Reserved, Calm',        'Independent but affectionate on his terms.',    'https://commons.wikimedia.org/wiki/Special:FilePath/Britskorthaar-64091287828362D7bA.jpg', 'AVAILABLE'),
+    (4, 'Molly',   'Dog', 'Dalmatian',          2, 'Energetic, Playful',    'Needs an active owner for daily runs.',         'https://commons.wikimedia.org/wiki/Special:FilePath/Dalmatian_puppy.JPG', 'AVAILABLE'),
+    (4, 'Nala',    'Cat', 'Abyssinian',         1, 'Active, Curious',       'Always on the move, loves to climb.',           'https://commons.wikimedia.org/wiki/Special:FilePath/Valentino.jpg', 'AVAILABLE');
 
 -- messages: sender/receiver are user ids, pet_id references pets table
 INSERT INTO messages (sender_id, receiver_id, pet_id, content, is_read) VALUES

@@ -5,6 +5,7 @@ import tools.jackson.databind.ObjectMapper;
 import tools.jackson.databind.node.ObjectNode;
 import com.pawfectmatch.backend.pets.Pet;
 import com.pawfectmatch.backend.pets.PetRepository;
+import org.springframework.mock.web.MockMultipartFile;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,14 +42,15 @@ public class PetControllerTest {
 
         assertEquals(200, response.getStatus());
 
-        List<Pet> pets = objectMapper.readValue(response.getContentAsString(), new TypeReference<List<Pet>>() {});
+        List<Pet> pets = objectMapper.readValue(response.getContentAsString(), new TypeReference<List<Pet>>() {
+        });
         assertTrue(pets.size() > 0);
     }
 
     // GET /pets/{id}
     @Test
     void getPetById() throws Exception {
-        MockHttpServletResponse response = mockMvc.perform(get("/pets/1"))  // "Milo"
+        MockHttpServletResponse response = mockMvc.perform(get("/pets/1")) // "Milo"
                 .andReturn().getResponse();
 
         assertEquals(200, response.getStatus());
@@ -66,13 +68,10 @@ public class PetControllerTest {
 
     @Test
     void getPetById_nonExistent() throws Exception {
-        // Pet 9999 does not exist 
-        assertThrows(Exception.class, () ->
-                mockMvc.perform(get("/pets/9999")).andReturn()
-        );
+        // Pet 9999 does not exist
+        assertThrows(Exception.class, () -> mockMvc.perform(get("/pets/9999")).andReturn());
         assertFalse(petRepository.findById(9999).isPresent());
     }
-
 
     // GET /pets/available
     @Test
@@ -82,7 +81,8 @@ public class PetControllerTest {
 
         assertEquals(200, response.getStatus());
 
-        List<Pet> available = objectMapper.readValue(response.getContentAsString(), new TypeReference<List<Pet>>() {});
+        List<Pet> available = objectMapper.readValue(response.getContentAsString(), new TypeReference<List<Pet>>() {
+        });
         assertTrue(available.size() > 0);
 
         // Every returned pet must have status AVAILABLE
@@ -99,7 +99,8 @@ public class PetControllerTest {
 
         assertEquals(200, response.getStatus());
 
-        List<Pet> pets = objectMapper.readValue(response.getContentAsString(), new TypeReference<List<Pet>>() {});
+        List<Pet> pets = objectMapper.readValue(response.getContentAsString(), new TypeReference<List<Pet>>() {
+        });
         assertTrue(pets.size() > 0);
 
         for (Pet pet : pets) {
@@ -114,7 +115,8 @@ public class PetControllerTest {
 
         assertEquals(200, response.getStatus());
 
-        List<Pet> pets = objectMapper.readValue(response.getContentAsString(), new TypeReference<List<Pet>>() {});
+        List<Pet> pets = objectMapper.readValue(response.getContentAsString(), new TypeReference<List<Pet>>() {
+        });
         assertEquals(0, pets.size());
     }
 
@@ -132,9 +134,9 @@ public class PetControllerTest {
         petJSON.put("status", "AVAILABLE");
 
         MockHttpServletResponse response = mockMvc.perform(
-                        post("/pets")
-                                .contentType("application/json")
-                                .content(petJSON.toString()))
+                post("/pets")
+                        .contentType("application/json")
+                        .content(petJSON.toString()))
                 .andReturn().getResponse();
 
         assertEquals(200, response.getStatus());
@@ -169,9 +171,9 @@ public class PetControllerTest {
         updatedPetJSON.put("status", "ON_HOLD");
 
         MockHttpServletResponse response = mockMvc.perform(
-                        put("/pets/2")
-                                .contentType("application/json")
-                                .content(updatedPetJSON.toString()))
+                put("/pets/2")
+                        .contentType("application/json")
+                        .content(updatedPetJSON.toString()))
                 .andReturn().getResponse();
 
         assertEquals(200, response.getStatus());
@@ -203,10 +205,37 @@ public class PetControllerTest {
     // DELETE non-existent ID
     @Test
     void deletePet_nonExistent() throws Exception {
-        // Pet 9999 does not exist 
+        // Pet 9999 does not exist
         MockHttpServletResponse response = mockMvc.perform(delete("/pets/9999"))
                 .andReturn().getResponse();
 
         assertEquals(200, response.getStatus());
+    }
+
+    @Test
+    void uploadPetImage() throws Exception {
+        MockMultipartFile image = new MockMultipartFile(
+                "image",
+                "milo.png",
+                "image/png",
+                new byte[] { 1, 2, 3, 4 });
+
+        MockHttpServletResponse response = mockMvc.perform(
+                multipart("/pet-images/pets/1")
+                        .file(image))
+                .andReturn().getResponse();
+
+        assertEquals(200, response.getStatus());
+
+        Pet updatedPet = objectMapper.readValue(response.getContentAsString(), Pet.class);
+        assertNotNull(updatedPet.getPhotoUrl());
+        assertTrue(updatedPet.getPhotoUrl().startsWith("/pet-images/"));
+
+        MockHttpServletResponse imageResponse = mockMvc.perform(
+                get(updatedPet.getPhotoUrl()))
+                .andReturn().getResponse();
+
+        assertEquals(200, imageResponse.getStatus());
+        assertEquals("image/png", imageResponse.getContentType());
     }
 }

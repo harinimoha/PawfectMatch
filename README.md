@@ -220,6 +220,23 @@ Example request:
 GET http://localhost:8080/pets
 ```
 
+### Upload pet photos
+
+Pet photos can be uploaded as PNG or JPEG images and are stored as a `photoUrl` on each pet record.
+
+```bash
+POST http://localhost:8080/pet-images/pets/1
+Content-Type: multipart/form-data
+```
+
+The uploaded image is then available at the returned `photoUrl` value, for example:
+
+```bash
+GET http://localhost:8080/pet-images/<generated-file-name>.png
+```
+
+Frontends should render the image from the pet's `photoUrl` when showing available pets.
+
 Because the database resets on startup, this request will always return the same data.
 
 ---
