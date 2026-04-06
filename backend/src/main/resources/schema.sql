@@ -10,7 +10,7 @@ CREATE TABLE users (
     email       VARCHAR(100)    NOT NULL UNIQUE,
     password    VARCHAR(255)    NOT NULL,
     role        VARCHAR(20)     NOT NULL,
-    created_at  TIMESTAMP       DEFAULT CURRENT_TIMESTAMP  --"user joined for ... years" add credentials
+    created_at  TIMESTAMP       DEFAULT CURRENT_TIMESTAMP,  --"user joined for ... years" add credentials
 
     CHECK (role IN ('ADOPTER', 'PROVIDER'))
 );
