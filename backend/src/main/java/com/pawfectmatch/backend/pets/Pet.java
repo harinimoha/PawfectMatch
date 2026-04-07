@@ -25,7 +25,7 @@ public class Pet {
     private String temperament;
     private String description;
 
-    @Column(name = "photo_url")
+    @Column(name = "photo_url", columnDefinition = "TEXT")
     private String photoUrl;
 
     @Column(nullable = false)

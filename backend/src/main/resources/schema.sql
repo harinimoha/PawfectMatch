@@ -54,7 +54,7 @@ CREATE TABLE pets (
     age         INT,
     temperament VARCHAR(255),
     description VARCHAR(500),
-    photo_url   VARCHAR(500),
+    photo_url   TEXT,
     status      VARCHAR(20)     NOT NULL DEFAULT 'AVAILABLE',   -- available or adopted
     created_at  TIMESTAMP       DEFAULT CURRENT_TIMESTAMP,
 
